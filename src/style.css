@@ -42,6 +42,9 @@ span {
   height: 4px;
   background: radial-gradient(#0092f3cb, #fdfdfd23);
 }
+main {
+  height: 100vh;
+}
 .content {
   height: 100vh;
   font-size: 0.5em;
