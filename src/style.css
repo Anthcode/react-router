@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css?family=Teko:300,400,500,600,700');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Teko';
+}
+.app {
+  border: 1px solid black;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 18px 10px;
+  background: #a8c0ff; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #3f2b96,
+    #a8c0ff
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #3f2b96,
+    #a8c0ff
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  box-shadow: 4px 4px 8px rgba(93, 174, 240, 0.3);
+}
+.header-white {
+  width: 100%;
+  height: 4px;
+  background: radial-gradient(#0092f3cb, #fdfdfd23);
+}
+.content {
+  height: 100vh;
+  font-size: 0.5em;
+  margin: 10px 6px;
+  padding: 8px 4px;
+}
+.footer {
+  justify-content: flex-end;
+  color: white;
+  background: #a8c0ff; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #3f2b96,
+    #a8c0ff
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #7359da,
+    #002686
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border: 1px solid black;
+  text-align: center;
+  font-size: 0.8em;
+  padding: 18px 10px;
+  text-shadow: 2px 2px 2px rgba(2, 2, 2, 0.884);
+}
+.logo {
+  width: 50px;
+  height: 50px;
+}
+.menu {
+  color: rgb(255, 255, 255);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  padding: 2px 40px;
+}
+ul {
+  display: flex;
+  list-style: none;
+  text-shadow: 4px 4px 8px rgb(0, 0, 0);
+}
+li {
+  padding: 2px 8px;
+  font-size: 1.7em;
+}
+li:hover {
+  cursor: pointer;
+  text-shadow: 5px 5px 10px rgb(0, 0, 0);
+  color: #20ff03;
+}
