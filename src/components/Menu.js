@@ -2,20 +2,24 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 export default function Menu() {
+  
+  const activeStyles = {
+    
+    textDecoration: "underline",
+    color: "lightgreen"
+}
   return (
     <div className="menu">
       <nav>
-        <ul>
-          <NavLink to="/">
-            <li>Home</li>
+          <NavLink to="/" style={({isActive}) => isActive ? activeStyles : null}>
+            Home
           </NavLink>
-          <NavLink to="about">
-            <li>About</li>
+          <NavLink to="about" style={({isActive}) => isActive ? activeStyles : null}>
+            About
           </NavLink>
-          <NavLink to="contact">
-            <li>Contact</li>
+          <NavLink to="contact" style={({isActive}) => isActive ? activeStyles : null}>
+            Contact
           </NavLink>
-        </ul>
       </nav>
     </div>
   );
