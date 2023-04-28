@@ -4,8 +4,7 @@ import { NavLink } from 'react-router-dom';
 export default function Menu() {
   
   const activeStyles = {
-    
-    textDecoration: "underline",
+
     color: "lightgreen"
 }
   return (
