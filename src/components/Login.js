@@ -18,7 +18,7 @@ export default function Login() {
           onChange={signIn}
          
         />
-        <h3> {login.email} </h3>
+        
         <input
           type="password"
           placeholder="passwd"
@@ -27,10 +27,11 @@ export default function Login() {
          
         />
         <button className="btn-login">Log in</button>
-       
+      <h3> {login.email} </h3>
+      <h3> {login.passwd} </h3>
       </form>
    
-       
+      
     </div>
   );
 }
