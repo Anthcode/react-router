@@ -1,15 +1,23 @@
 import React from 'react';
+import { Routes, Route, Outlet, Link } from 'react-router-dom';
 import './style.css';
-import Header from './components/Header';
-import Content from './components/Content';
-import Footer from './components/Footer';
+import Layout from './components/Layout';
+import Home from './components/Home';
+import About from './components/About';
+import Contact from './components/Contact';
+import Login from './components/Login';
 
 export default function App() {
   return (
     <div className="app">
-      <Header />
-      <Content />
-      <Footer />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="login" element={<Login />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
