@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -6,66 +7,60 @@ import {
 import { auth } from '../firebase/firebase';
 
 export default function Login() {
-  const [login, setLogin] = useState({});
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const signIn = async (e) => {
+  const logIn = async (e) => {
     e.preventDefault();
-    const data = new FormData(e.target);
-    let formObject = Object.fromEntries(data.entries());
-    console.log(formObject);
-    setLogin(formObject);
-
-    /*    await createUserWithEmailAndPassword(auth, login.email, login.passwd)
+    await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
+        navigate("/");
         console.log(user);
-
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
-        // ..
-      }); */
+      });
+  };
 
-    await signInWithEmailAndPassword(auth, login.email, login.passwd)
+  const createUser = async (e) => {
+    e.preventDefault();
+    await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
         console.log(user);
-
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
-        // ..
       });
   };
   return (
     <div className="login">
-      <form onSubmit={signIn}>
+      <form>
         <h2>Login</h2>
         <input
           type="email"
           placeholder="your@email.com"
           name="email"
-          // onChange={signIn}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
           placeholder="passwd"
           name="passwd"
-          // onChange={signIn}
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="btn-login" type="submit">
+        <button className="btn-login" onClick={logIn}>
           Log in
         </button>
-        <h3>{login.email}</h3>
-        <h3>{login.passwd}</h3>
+        <button className="btn-login" onClick={createUser}>
+          Register
+        </button>
       </form>
     </div>
   );
