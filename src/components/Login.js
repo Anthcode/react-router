@@ -43,6 +43,7 @@ export default function Login() {
     <div className="login">
       <form>
         <h2>Login</h2>
+        <div className="input-div">
         <input
           type="email"
           placeholder="your@email.com"
@@ -55,6 +56,7 @@ export default function Login() {
           name="passwd"
           onChange={(e) => setPassword(e.target.value)}
         />
+        </div>
         <button className="btn-login" onClick={logIn}>
           Log in
         </button>
