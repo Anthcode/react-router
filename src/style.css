@@ -13,21 +13,21 @@ body::-webkit-scrollbar {
 body {
   -ms-overflow-style: none;
   scrollbar-width: none;
-  background: linear-gradient(
-    to bottom,
-    #a8c0ff,
-    #3c9dca79
-  );
+  background: linear-gradient(to bottom, #a8c0ff, #3c9dca79);
+  min-height: 400px;
 }
 
 .app {
-  border: 1px solid black;
   height: 100vh;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
 }
 h1 {
   font-size: 4em;
+}
+h2 {
+  margin: 8px 4px;
 }
 span {
   font-size: 2em;
@@ -36,7 +36,6 @@ a {
   text-decoration: none;
   color: white;
   padding: 8px 4px;
-
 }
 
 a:hover::before {
@@ -69,8 +68,9 @@ a:hover::before {
 }
 main {
   height: 100vh;
+  min-height: 300px;
   border: 1px solid rgb(0, 0, 0);
-  margin:10px 8px;
+  margin: 10px 8px;
   border-radius: 23px;
   background: white;
   box-shadow: 2px 2px 4px rgba(23, 70, 109, 0.3);
@@ -87,13 +87,11 @@ main {
 .logo {
   width: 50px;
   height: 50px;
-
 }
 .menu {
   color: rgb(255, 255, 255);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 24px;
- 
   padding: 8px;
   padding-right: 60px;
   display: flex;
@@ -106,17 +104,58 @@ nav {
   text-shadow: 4px 4px 8px rgb(0, 0, 0);
   letter-spacing: 2px;
 }
+.login {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 12px 10px;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80vw;
+  position: absolute;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60vw;
+
+  background-color: rgba(107, 102, 102, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 14px;
+  box-shadow: 2px 2px 4px rgba(23, 70, 109, 0.3);
+}
+form,
+input,
+button {
+  margin: 4px 6px;
+  padding: 2px 6px;
+}
+.btn-login {
+  border: none;
+  color: rgb(0, 0, 0);
+  padding: 4px 24px;
+  margin: 20px 6px;
+  font-family: monospace;
+  font-weight: bold;
+  letter-spacing: 1px;
+  background-color: #5281f7;
+  box-shadow: 2px 2px 4px rgba(23, 70, 109, 0.3);
+  border-radius: 4px;
+}
+.btn-login:hover {
+  box-shadow: 2px 2px 4px rgba(23, 70, 109, 0.6);
+  color: rgb(255, 255, 255);
+  background-color: #2c50aa;
+}
+
 .footer {
   justify-content: flex-end;
   color: white;
-  background: linear-gradient(
-    to top,
-    #252525e0,
-    #69d0f034
-  );
-  
+  background: linear-gradient(to top, #252525e0, #69d0f034);
   text-align: center;
   font-size: 0.6em;
   padding: 18px 10px;
   text-shadow: 2px 2px 2px rgba(2, 2, 2, 0.884);
+  min-height: 100px;
 }
