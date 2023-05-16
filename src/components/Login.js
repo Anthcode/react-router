@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { auth } from '../firebase/firebase';
+import AuthContext from "../auth/AuthContext";
 
 export default function Login() {
-
-
+ 
+  const [user, setUser] = useState(null)
   
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -21,10 +22,11 @@ export default function Login() {
     setIsLoging(true);
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
+      const user = userCredential.user;
+       setUser(user)
         navigate('/');
         setIsLoging(false);
-        console.log(user);
+     
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -39,7 +41,7 @@ export default function Login() {
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(auth.currentUser)
+      
       })
       .catch((error) => {
         const errorCode = error.code;
