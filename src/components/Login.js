@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   createUserWithEmailAndPassword,
@@ -7,15 +7,18 @@ import {
 import { auth } from '../firebase/firebase';
 
 export default function Login() {
+
+
+  
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoging, setIsLoging] = useState(false);
 
   const logIn = async (e) => {
-    setIsLoging(true);
+  
     e.preventDefault();
-
+    setIsLoging(true);
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -36,7 +39,7 @@ export default function Login() {
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
+        console.log(auth.currentUser)
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -64,9 +67,9 @@ export default function Login() {
           />
         </div>
         <button className="btn-login" onClick={logIn} disabled={!email}>
-          Login
+          {isLoging? "Logging...":"Login"}
         </button>
-        <button className="btn-login" onClick={createUser}>
+        <button className="btn-register" onClick={createUser}>
           Register
         </button>
       </form>
