@@ -162,9 +162,12 @@ button {
   color: #666666;
 }
 .login-icon {
-  width: 10px;
-  height: 10px;
-  background-color: #000000;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(23, 70, 109, 0.3);
+  border-radius: 50%;
+  border: 1px solid white;
+  box-shadow: 2px 2px 4px rgba(23, 70, 109, 0.6);
 }
 
 .footer {
