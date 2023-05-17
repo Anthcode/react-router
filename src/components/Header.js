@@ -5,7 +5,7 @@ import Logicon from './Logicon';
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from '../firebase/firebase';
 
-export default function Header() {
+export default function Header({user}) {
 
  
   return (
@@ -13,7 +13,7 @@ export default function Header() {
       <div className="header">
         <Logo />
         <Menu />
-        <Logicon />
+        <Logicon user={user} />
       </div>
       <div className="header-white"></div>
     </>

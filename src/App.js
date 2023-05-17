@@ -12,6 +12,7 @@ import { auth } from './firebase/firebase';
 
 export default function App() {
 
+  const [user , setUser] = useState(null)
 /*   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth,(currentUser) => {
       if (currentUser) {
@@ -28,11 +29,11 @@ export default function App() {
     <div className="app">
        
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout user={user} />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="login" element={<Login />} />
+          <Route path="login" element={<Login user={user} setUser={setUser} />} />
         </Route>
       </Routes>
 

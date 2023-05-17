@@ -9,9 +9,9 @@ import {
 import { auth, } from '../firebase/firebase';
 import AuthContext from "../auth/AuthContext";
 
-export default function Login() {
+export default function Login({user, setUser}) {
  
-  const [user, setUser] = useState(null)
+ // const [user, setUser] = useState(null)
   
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
