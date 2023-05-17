@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
-import AuthContext from "../auth/AuthContext";
+import React from 'react';
+import { useAuth } from "../auth/AuthContext";
 
 export default function Logicon() {
-
-
-
+  const {currentUser} = useAuth();
   return (
-        <div>
-
-        </div>
-  );
+    <>
+    {currentUser ? (
+        <div className="login-icon"></div>
+    ):null}
+  </>
+  )
 }
