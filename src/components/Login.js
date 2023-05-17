@@ -1,22 +1,33 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut
-} from 'firebase/auth';
-import { auth, } from '../firebase/firebase';
-import AuthContext from "../auth/AuthContext";
 
-export default function Login({user, setUser}) {
- 
+import { useAuth } from "../auth/AuthContext";
+
+export default function Login() {
+  const { login, currentUser } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoging, setIsLoging] = useState(false);
+  const [error, setError] = useState("")
 
-
+  
+  async function handleSubmit(e) {
+    e.preventDefault()
+    try {
+     
+      setError("")
+      setIsLoging(true);
+      await login(email, password)
+      
+      //history.push("/")
+      console.log("auth works!")
+    } catch {
+      setError("Failed to log in")
+    }
+    setIsLoging(false);
+  }
+    /* 
 
    useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth,(user) => {
@@ -34,7 +45,6 @@ export default function Login({user, setUser}) {
   const logIn = (e) => {
     e.preventDefault()
     setIsLoging(true);
-
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
       const user = userCredential.user;
@@ -46,8 +56,8 @@ export default function Login({user, setUser}) {
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
       });
-  };
-
+  }; */
+/* 
   const createUser =  (e) => {
     e.preventDefault();
      createUserWithEmailAndPassword(auth, email, password)
@@ -70,13 +80,14 @@ export default function Login({user, setUser}) {
       }).catch((error) => {
       // An error happened.
       console.log(errorcode, errormessage);
-      });
+      }); 
   }
+  */
   return (
     <div className="login">
-          {user ? (
+          {currentUser? (
            <div className="logout">
-            <p>Użytkownik jest zalogowany jako <b>{user.email}</b></p>
+            <p>Użytkownik jest zalogowany jako <b>{currentUser.email}</b></p>
             <button onClick={logOut}> Logout </button>
             </div>
           ) : (
@@ -97,10 +108,10 @@ export default function Login({user, setUser}) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button className="btn-login" onClick={logIn} disabled={!email}>
+        <button className="btn-login" onClick={handleSubmit} disabled={!email}>
           {isLoging? "Logging...":"Login"}
         </button>
-        <button className="btn-register" onClick={createUser}>
+        <button className="btn-register" >
           Register
         </button>
       </form>
