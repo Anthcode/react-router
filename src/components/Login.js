@@ -51,7 +51,7 @@ export default function Login() {
           <p>
             Użytkownik jest zalogowany jako <b>{currentUser.email}</b>
           </p>
-          <button onClick={handleLogout}> Logout </button>
+          <button onClick={handleLogout}>Logout</button>
         </div>
       ) : (
         <form>
