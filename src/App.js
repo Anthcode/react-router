@@ -13,17 +13,7 @@ import { auth } from './firebase/firebase';
 export default function App() {
 
   const [user , setUser] = useState(null)
-/*   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth,(currentUser) => {
-      if (currentUser) {
-        setUser(currentUser);
-      } else {
-        setUser(null);
-      }
-    });
 
-    return () => unsubscribe();
-  }, []); */
 
   return (
     <div className="app">

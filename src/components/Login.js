@@ -11,8 +11,6 @@ import AuthContext from "../auth/AuthContext";
 
 export default function Login({user, setUser}) {
  
- // const [user, setUser] = useState(null)
-  
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -33,20 +31,21 @@ export default function Login({user, setUser}) {
   }, []);  
 
 
-  const logIn = async (e) => {
+  const logIn = (e) => {
     e.preventDefault()
     setIsLoging(true);
-    try{
-        const user = await signInWithEmailAndPassword(auth, email, password)
-        navigate('/');
-        setIsLoging(false);
-        setUser(user)
-        console.log(user)
-      }
-      catch(error) {
-        setIsLoging(false);
-        console.log(errorcode, errormessage);
-      };
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+      const user = userCredential.user;
+      setIsLoging(false);
+      setUser(user)
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
   };
 
   const createUser =  (e) => {
