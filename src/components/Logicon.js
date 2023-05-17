@@ -7,14 +7,7 @@ export default function Logicon() {
 
   return (
         <div>
-         {/*  {user ?(
-          <>
-            <p>Użytkownik jest zalogowany jako {user.email}</p>
-            
-          </>
-          ) : (
-            <p>Użytkownik nie jest zalogowany</p>
-          )} */}
+
         </div>
   );
 }

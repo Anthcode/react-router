@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../auth/AuthContext";
 
 export default function Login() {
-  const { login, currentUser } = useAuth();
+  const { login, currentUser, logout } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,12 +21,25 @@ export default function Login() {
       await login(email, password)
       
       //history.push("/")
-      console.log("auth works!")
+      console.log("auth works!", currentUser.email)
     } catch {
       setError("Failed to log in")
     }
     setIsLoging(false);
   }
+
+  async function handleLogout() {
+    setError("")
+
+    try {
+      await logout()
+     // history.push("/login")
+    } catch {
+      setError("Failed to log out")
+    }
+  }
+
+
     /* 
 
    useEffect(() => {
@@ -88,7 +101,7 @@ export default function Login() {
           {currentUser? (
            <div className="logout">
             <p>Użytkownik jest zalogowany jako <b>{currentUser.email}</b></p>
-            <button onClick={logOut}> Logout </button>
+            <button onClick={handleLogout} > Logout </button>
             </div>
           ) : (
             <form>
