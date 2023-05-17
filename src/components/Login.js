@@ -1,10 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
 } from 'firebase/auth';
-import { auth } from '../firebase/firebase';
+import { auth, } from '../firebase/firebase';
 import AuthContext from "../auth/AuthContext";
 
 export default function Login() {
@@ -16,42 +18,70 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [isLoging, setIsLoging] = useState(false);
 
+
+
+   useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth,(user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);  
+
+
   const logIn = async (e) => {
-  
-    e.preventDefault();
+    e.preventDefault()
     setIsLoging(true);
-    await signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-      const user = userCredential.user;
-       setUser(user)
+    try{
+        const user = await signInWithEmailAndPassword(auth, email, password)
         navigate('/');
         setIsLoging(false);
-     
+        setUser(user)
+        console.log(user)
+      }
+      catch(error) {
+        setIsLoging(false);
+        console.log(errorcode, errormessage);
+      };
+  };
+
+  const createUser =  (e) => {
+    e.preventDefault();
+     createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+      const user = userCredential.user;
+      setUser(user)
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        setIsLoging(false);
         console.log(errorCode, errorMessage);
       });
   };
 
-  const createUser = async (e) => {
-    e.preventDefault();
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-      
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+  const logOut = () =>{
+    signOut(auth).then(() => {
+      // Sign-out successful.
+         // navigate("/");
+          console.log("Signed out successfully")
+      }).catch((error) => {
+      // An error happened.
+      console.log(errorcode, errormessage);
       });
-  };
+  }
   return (
     <div className="login">
-      <form>
+          {user ? (
+           <div className="logout">
+            <p>Użytkownik jest zalogowany jako <b>{user.email}</b></p>
+            <button onClick={logOut}> Logout </button>
+            </div>
+          ) : (
+            <form>
         <h2>Login</h2>
         <div className="input-div">
           <input
@@ -75,6 +105,7 @@ export default function Login() {
           Register
         </button>
       </form>
+          )}
     </div>
   );
 }

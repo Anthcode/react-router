@@ -173,6 +173,12 @@ button {
 .login-icon-hide {
   display: none;
 }
+.logout{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .footer {
   justify-content: flex-end;
   color: white;

@@ -12,24 +12,21 @@ import { auth } from './firebase/firebase';
 
 export default function App() {
 
-
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth,(user) => {
-      if (user) {
-        setUser(user);
+/*   useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth,(currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
       } else {
         setUser(null);
       }
     });
 
     return () => unsubscribe();
-  }, [user]);
+  }, []); */
 
   return (
     <div className="app">
-       <AuthContext.Provider value={user}>
+       
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -38,7 +35,7 @@ export default function App() {
           <Route path="login" element={<Login />} />
         </Route>
       </Routes>
-      </AuthContext.Provider> 
+
     </div>
   );
 }
