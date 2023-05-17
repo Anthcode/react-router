@@ -6,7 +6,7 @@ export default function Logicon() {
   return (
     <>
     {currentUser ? (
-        <div className="login-icon"></div>
+        <div className="login-icon">{currentUser.email}</div>
     ):null}
   </>
   )
