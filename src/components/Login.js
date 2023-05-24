@@ -20,6 +20,8 @@ export default function Login() {
       setError(error.code);
     }
     setIsLoging(false);
+    setEmail('');
+    setPassword('');
   }
 
   async function handleSubmit(e) {
@@ -29,10 +31,11 @@ export default function Login() {
       setIsLoging(true);
       await login(email, password);
     } catch (error) {
-      console.log(error.code)
       setError(error.code);
     }
     setIsLoging(false);
+    setEmail('');
+    setPassword('');
   }
 
   async function handleLogout() {
@@ -70,6 +73,7 @@ export default function Login() {
               type="password"
               placeholder="passwd"
               name="passwd"
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
