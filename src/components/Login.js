@@ -16,8 +16,8 @@ export default function Login() {
       setError('');
       setIsLoging(true);
       await signup(email, password);
-    } catch {
-      setError('Failed to log in');
+    } catch (error){
+      setError(error.code);
     }
     setIsLoging(false);
   }
@@ -28,8 +28,9 @@ export default function Login() {
       setError('');
       setIsLoging(true);
       await login(email, password);
-    } catch {
-      setError('Failed to log in');
+    } catch (error) {
+      console.log(error.code)
+      setError(error.code);
     }
     setIsLoging(false);
   }
@@ -56,6 +57,7 @@ export default function Login() {
       ) : (
         <form>
           <h2>Login</h2>
+          {error && <p>{error}</p>}
           <div className="input-div">
             <input
               type="email"
