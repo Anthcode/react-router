@@ -34,7 +34,7 @@ export function AuthProvider({ children }) {
 
   function createUserDataFolder(userId) {
    
-    const userFolderRef = ref(db, '/users' + userId)
+    const userFolderRef = ref(db, '/users/' + userId)
    
     
     // Tworzenie folderu dla użytkownika
