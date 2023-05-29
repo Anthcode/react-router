@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 
 export default function Login() {
-  const { login, currentUser, logout, signup } = useAuth();
+  const { login, currentUser, logout, signup, userData } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,7 +16,7 @@ export default function Login() {
       setError('');
       setIsLoging(true);
       await signup(email, password);
-    } catch (error){
+    } catch (error) {
       setError(error.code);
     }
     setIsLoging(false);
@@ -39,10 +39,10 @@ export default function Login() {
   }
 
   async function handleLogout() {
-    setError("");
+    setError('');
     try {
       await logout();
-      navigate("/")
+      navigate('/');
     } catch {
       setError('Failed to log out');
     }
@@ -56,6 +56,10 @@ export default function Login() {
             Użytkownik jest zalogowany jako <b>{currentUser.email}</b>
           </p>
           <button onClick={handleLogout}>Logout</button>
+          <p> {userData.id}</p>
+          <p> {userData.email}</p>
+          <p> {userData.name}</p>
+          <p> {userData.age}</p>
         </div>
       ) : (
         <form>
@@ -84,7 +88,7 @@ export default function Login() {
           >
             {isLoging ? 'Logging...' : 'Login'}
           </button>
-          <button  className="btn-register" onClick={handleRegister}>
+          <button className="btn-register" onClick={handleRegister}>
             Register
           </button>
         </form>
