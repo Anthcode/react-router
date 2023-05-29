@@ -6,6 +6,8 @@ import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
+import { db } from "../firebase/firebase"
+import { ref, set, onValue, remove } from "firebase/database";
 
 const AuthContext = createContext();
 
@@ -18,7 +20,37 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   function signup(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password);
+    return createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const userId = userCredential.user.uid;
+      console.log(userId)
+      createUserDataFolder(userId); // Tworzenie folderu dla użytkownika w bazie danych
+      return userId;
+    })
+    .catch((error) => {
+      console.error('Błąd podczas tworzenia nowego użytkownika:', error);
+    });
+  }
+
+  function createUserDataFolder(userId) {
+   
+    const userFolderRef = ref(db, '/users' + userId)
+   
+    
+    // Tworzenie folderu dla użytkownika
+   set(userFolderRef,{
+      // Dodaj dowolne początkowe dane dla folderu użytkownika
+      // Na przykład:
+      name: 'John Doe',
+      age: 30,
+      email: 'johndoe@example.com'
+    })
+    .then(() => {
+      console.log('Utworzono folder dla użytkownika:', userId);
+    })
+    .catch((error) => {
+      console.error('Błąd podczas tworzenia folderu użytkownika:', error);
+    });
   }
 
   function login(email, password) {
