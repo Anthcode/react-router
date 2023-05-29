@@ -1,37 +1,94 @@
 import React, { useState } from 'react';
-export default function Login() {
-  const [login, setLogin] = useState({});
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../auth/AuthContext';
 
-  const signIn = (e) => {
+export default function Login() {
+  const { login, currentUser, logout, signup } = useAuth();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoging, setIsLoging] = useState(false);
+  const [error, setError] = useState('');
+
+  async function handleRegister(e) {
     e.preventDefault();
-    const data = new FormData(e.target);
-    let formObject = Object.fromEntries(data.entries());
-    console.log(formObject);
-    setLogin(formObject);
-  };
+    try {
+      setError('');
+      setIsLoging(true);
+      await signup(email, password);
+    } catch (error){
+      setError(error.code);
+    }
+    setIsLoging(false);
+    setEmail('');
+    setPassword('');
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      setError('');
+      setIsLoging(true);
+      await login(email, password);
+    } catch (error) {
+      setError(error.code);
+    }
+    setIsLoging(false);
+    setEmail('');
+    setPassword('');
+  }
+
+  async function handleLogout() {
+    setError("");
+    try {
+      await logout();
+      navigate("/")
+    } catch {
+      setError('Failed to log out');
+    }
+  }
+
   return (
     <div className="login">
-      <form onSubmit={signIn}>
-        <h2>Login</h2>
-        <input
-          type="email"
-          placeholder="your@email.com"
-          name="email"
-          // onChange={signIn}
-        />
-        <input
-          type="password"
-          placeholder="passwd"
-          name="passwd"
-          // onChange={signIn}
-        />
-        <button className="btn-login" type="submit">
-          Log in
-        </button>
-        <h3>{login.email}</h3>
-        <h3>{login.passwd}</h3>
-        {process.env.REACT_APP_NAME}
-      </form>
+      {currentUser ? (
+        <div className="logout">
+          <p>
+            Użytkownik jest zalogowany jako <b>{currentUser.email}</b>
+          </p>
+          <button onClick={handleLogout}>Logout</button>
+        </div>
+      ) : (
+        <form>
+          <h2>Login</h2>
+          {error && <p>{error}</p>}
+          <div className="input-div">
+            <input
+              type="email"
+              placeholder="your@email.com"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="passwd"
+              name="passwd"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button
+            className="btn-login"
+            onClick={handleSubmit}
+            disabled={!email}
+          >
+            {isLoging ? 'Logging...' : 'Login'}
+          </button>
+          <button  className="btn-register" onClick={handleRegister}>
+            Register
+          </button>
+        </form>
+      )}
     </div>
   );
 }
