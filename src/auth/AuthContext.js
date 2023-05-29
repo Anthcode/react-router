@@ -23,8 +23,9 @@ export function AuthProvider({ children }) {
     return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const userId = userCredential.user.uid;
-      console.log(userId)
-      createUserDataFolder(userId); // Tworzenie folderu dla użytkownika w bazie danych
+      const userEmail = userCredential.user.email;
+      console.log(userId, userEmail)
+      createUserDataFolder(userId, userEmail); // Tworzenie folderu dla użytkownika w bazie danych
       return userId;
     })
     .catch((error) => {
@@ -32,7 +33,7 @@ export function AuthProvider({ children }) {
     });
   }
 
-  function createUserDataFolder(userId) {
+  function createUserDataFolder(userId,userEmail) {
    
     const userFolderRef = ref(db, '/users/' + userId)
    
@@ -43,7 +44,7 @@ export function AuthProvider({ children }) {
       // Na przykład:
       name: 'John Doe',
       age: 30,
-      email: 'johndoe@example.com'
+      email: userEmail
     })
     .then(() => {
       console.log('Utworzono folder dla użytkownika:', userId);
