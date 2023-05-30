@@ -51,14 +51,6 @@ export default function Login() {
 
   return (
     <div className="login">
-      {currentUser ? (
-        <div className="logout">
-          <p>
-            Użytkownik jest zalogowany jako <b>{currentUser.email}</b>
-          </p>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      ) : (
         <form>
           <h2>Login</h2>
           {error && <p>{error}</p>}
@@ -89,7 +81,7 @@ export default function Login() {
             Register
           </button>
         </form>
-      )}
+      
     </div>
   );
 }
