@@ -1,10 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useAuth } from '../auth/AuthContext';
 
 export default function Menu() {
   const activeStyles = {
     color: 'lightgreen',
   };
+  const { currentUser } = useAuth();
   return (
     <div className="menu">
       <nav>
@@ -26,12 +28,14 @@ export default function Menu() {
         >
           Contact
         </NavLink>
+        
         <NavLink
           to="login"
           style={({ isActive }) => (isActive ? activeStyles : null)}
         >
-          Login
+         {!currentUser?  "Login" : "Logout"}
         </NavLink>
+       
       </nav>
     </div>
   );

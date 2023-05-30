@@ -9,6 +9,7 @@ import {
 import { db } from "../firebase/firebase"
 import { ref, set, onValue, remove, get, child } from "firebase/database";
 
+
 const AuthContext = createContext();
 
 export function useAuth() {
@@ -19,6 +20,7 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userData, setuserData] = useState({});
+
 
   function signup(email, password) {
     return createUserWithEmailAndPassword(auth, email, password)

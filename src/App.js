@@ -20,18 +20,12 @@ export default function App() {
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="login" element={<Login />} />
-          <Route
-            path="/user"
+            <Route path="user" 
             element={
-              <Protected currentUser={currentUser}>
-                <UserPage />
-              </Protected>
-            }
-          />
+              <Protected currentUser={currentUser}><UserPage /></Protected>
+            } />
         </Route>
-      
       </Routes>
-   
     </div>
   );
 }

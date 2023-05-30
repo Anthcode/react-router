@@ -30,6 +30,7 @@ export default function Login() {
       setError('');
       setIsLoging(true);
       await login(email, password);
+      navigate('/user');
     } catch (error) {
       setError(error.code);
     }
@@ -42,7 +43,7 @@ export default function Login() {
     setError('');
     try {
       await logout();
-      navigate('/');
+      navigate('/login');
     } catch {
       setError('Failed to log out');
     }
@@ -56,10 +57,6 @@ export default function Login() {
             Użytkownik jest zalogowany jako <b>{currentUser.email}</b>
           </p>
           <button onClick={handleLogout}>Logout</button>
-          <p> {userData.id}</p>
-          <p> {userData.email}</p>
-          <p> {userData.name}</p>
-          <p> {userData.age}</p>
         </div>
       ) : (
         <form>
