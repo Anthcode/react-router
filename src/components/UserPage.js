@@ -5,12 +5,12 @@ export default function UserPage() {
   const { currentUser, userData, logout} = useAuth();
 
   async function handleLogout() {
-    setError('');
+   
     try {
       await logout();
       navigate('/login');
     } catch {
-      setError('Failed to log out');
+      console.log('Failed to log out');
     }
   }
   return (
