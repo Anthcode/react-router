@@ -1,23 +1,26 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import { getDatabase } from 'firebase/database'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBHOdn1gsYUBwxZGb-mcq-T4OSHmhaTkBU',
+  apiKey: "AIzaSyBHOdn1gsYUBwxZGb-mcq-T4OSHmhaTkBU",
 
-  authDomain: 'auth-644f4.firebaseapp.com',
+  authDomain: "auth-644f4.firebaseapp.com",
 
-  projectId: 'auth-644f4',
+  databaseURL: "https://auth-644f4-default-rtdb.europe-west1.firebasedatabase.app",
 
-  storageBucket: 'auth-644f4.appspot.com',
+  projectId: "auth-644f4",
 
-  messagingSenderId: '335012110278',
+  storageBucket: "auth-644f4.appspot.com",
 
-  appId: '1:335012110278:web:05ef16ae90d6c35705dcc7',
+  messagingSenderId: "335012110278",
+
+  appId: "1:335012110278:web:05ef16ae90d6c35705dcc7"
+
 };
 
 // Initialize Firebase
-
-const app = initializeApp(firebaseConfig);
-
-export const auth = getAuth(app);
-export default app;
+const app = getApps.Length > 0 ? getApps() : initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
+export {app , auth, db};

@@ -18,6 +18,7 @@ body {
 .app {
   height: 100vh;
   min-height: 400px;
+  min-width: 350px;
   display: flex;
   flex-direction: column;
 }
@@ -65,6 +66,7 @@ a:hover::before {
 main {
   height: 100vh;
   min-height: 300px;
+  min-width: 350px;
   border: 1px solid rgb(0, 0, 0);
   margin: 10px 8px;
   border-radius: 23px;
@@ -188,4 +190,30 @@ button {
   padding: 18px 10px;
   text-shadow: 2px 2px 2px rgba(2, 2, 2, 0.884);
   min-height: 100px;
+}
+.userinfo{
+  border: 1px solid rgba(2, 2, 2, 0.685);
+  border-radius: 12px;
+  padding: 12px 10px;
+  width:auto;
+  
+}
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+}
+li{
+  font-family:'Droid Sans';
+}
+article{
+
+  padding: 18px 14px;
+
+}
+.home{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

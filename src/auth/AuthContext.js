@@ -6,6 +6,9 @@ import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
+import { db } from "../firebase/firebase"
+import { ref, set, get, child } from "firebase/database";
+
 
 const AuthContext = createContext();
 
@@ -16,13 +19,68 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [userData, setuserData] = useState({});
+
 
   function signup(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password);
+    return createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const userId = userCredential.user.uid;
+      const userEmail = userCredential.user.email;
+      createUserDataFolder(userId, userEmail); 
+      getUserDataFolder(userId);// Tworzenie folderu dla użytkownika w bazie danych
+      return userId;
+    })
+    .catch((error) => {
+      console.error('Błąd podczas tworzenia nowego użytkownika:', error);
+    });
   }
 
+  function createUserDataFolder(userId,userEmail) {
+    const userFolderRef = ref(db, '/users/' + userId)
+    // Tworzenie folderu dla użytkownika
+   set(userFolderRef,{
+      // Dodaj dowolne początkowe dane dla folderu użytkownika
+      // Na przykład:
+      id : userId,
+      name: 'John Doe',
+      age: 30,
+      email: userEmail
+    })
+    .then(() => {
+      console.log('Utworzono folder dla użytkownika:', userId);
+    })
+    .catch((error) => {
+      console.error('Błąd podczas tworzenia folderu użytkownika:', error);
+    });
+  }
+
+
+
   function login(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
+    return signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const userId = userCredential.user.uid;
+      getUserDataFolder(userId); // Pobranie danych z folderu użytkownika
+      return userId;
+    })
+    .catch((error) => {
+      console.error('Błąd podczas tworzenia nowego użytkownika:', error);
+    });
+  }
+
+  function getUserDataFolder(userId) {
+    const dbRef = ref(db);
+    get(child(dbRef, '/users/' + userId)).then((snapshot) => {
+      if (snapshot.exists()) {
+        setuserData(snapshot.val());
+        console.log(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
   }
 
   function logout() {
@@ -52,6 +110,7 @@ export function AuthProvider({ children }) {
 
   const value = {
     currentUser,
+    userData,
     login,
     signup,
     logout,

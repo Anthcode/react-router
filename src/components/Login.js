@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 
 export default function Login() {
-  const { login, currentUser, logout, signup } = useAuth();
+  const { login, currentUser, logout, signup, userData } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,7 +16,8 @@ export default function Login() {
       setError('');
       setIsLoging(true);
       await signup(email, password);
-    } catch (error){
+      navigate('/user');
+    } catch (error) {
       setError(error.code);
     }
     setIsLoging(false);
@@ -30,6 +31,7 @@ export default function Login() {
       setError('');
       setIsLoging(true);
       await login(email, password);
+      navigate('/user');
     } catch (error) {
       setError(error.code);
     }
@@ -38,26 +40,8 @@ export default function Login() {
     setPassword('');
   }
 
-  async function handleLogout() {
-    setError("");
-    try {
-      await logout();
-      navigate("/")
-    } catch {
-      setError('Failed to log out');
-    }
-  }
-
   return (
     <div className="login">
-      {currentUser ? (
-        <div className="logout">
-          <p>
-            Użytkownik jest zalogowany jako <b>{currentUser.email}</b>
-          </p>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      ) : (
         <form>
           <h2>Login</h2>
           {error && <p>{error}</p>}
@@ -84,11 +68,11 @@ export default function Login() {
           >
             {isLoging ? 'Logging...' : 'Login'}
           </button>
-          <button  className="btn-register" onClick={handleRegister}>
+          <button className="btn-register" onClick={handleRegister}>
             Register
           </button>
         </form>
-      )}
+      
     </div>
   );
 }
