@@ -158,23 +158,7 @@ button {
   background-color: #cccccc;
   color: #666666;
 }
-.login-icon {
-  width: 40px;
-  height: 40px;
-  background-color: rgba(23, 70, 109, 0.3);
-  border-radius: 50%;
-  border: 1px solid white;
-  box-shadow: 2px 2px 4px rgba(23, 70, 109, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.1em;
-  color: rgb(0, 0, 0);
-  cursor: pointer;
-}
-.login-icon-hide {
-  display: none;
-}
+
 .logout {
   display: flex;
   flex-direction: column;
@@ -216,3 +200,30 @@ article {
   overflow-y: scroll;
   scrollbar-width: none;
 }
+.userPage{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wrapp-icon{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.login-icon {
+  width: 35px;
+  height: 35px;
+  margin: 15px;
+  background-color: rgba(181, 187, 187, 0.897);
+  border-radius: 50%;
+  border: 1px solid black;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+.login-icon-hide {
+  display: none;
+}
+

@@ -1,10 +1,12 @@
 import React from 'react';
 import { useAuth } from '../auth/AuthContext';
+import Logicon from './Logicon'
 
 export default function UserPage() {
   const { currentUser, userData } = useAuth();
   return (
-    <div className="about">
+    <div className="userPage">
+      <Logicon />
       <h1>UserPAGE</h1>
 
       <div className="logout">
