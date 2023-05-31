@@ -7,7 +7,7 @@ import {
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
 import { db } from "../firebase/firebase"
-import { ref, set, onValue, remove, get, child } from "firebase/database";
+import { ref, set, get, child } from "firebase/database";
 
 
 const AuthContext = createContext();
