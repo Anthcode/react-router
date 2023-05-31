@@ -29,7 +29,8 @@ h2 {
   margin: 8px 4px;
 }
 span {
-  font-size: 2em;
+  font-size: 1em;
+  text-align: center;
 }
 a {
   text-decoration: none;
@@ -209,8 +210,9 @@ article {
 .wrapp-icon{
   width: 100%;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  flex-direction: column;
+  justify-content:center;
+  align-items: flex-end;
 }
 
 .login-icon {
