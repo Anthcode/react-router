@@ -27,7 +27,8 @@ export function AuthProvider({ children }) {
     .then((userCredential) => {
       const userId = userCredential.user.uid;
       const userEmail = userCredential.user.email;
-      createUserDataFolder(userId, userEmail); // Tworzenie folderu dla użytkownika w bazie danych
+      createUserDataFolder(userId, userEmail); 
+      getUserDataFolder(userId);// Tworzenie folderu dla użytkownika w bazie danych
       return userId;
     })
     .catch((error) => {

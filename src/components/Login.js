@@ -16,6 +16,7 @@ export default function Login() {
       setError('');
       setIsLoging(true);
       await signup(email, password);
+      navigate('/user');
     } catch (error) {
       setError(error.code);
     }
@@ -37,16 +38,6 @@ export default function Login() {
     setIsLoging(false);
     setEmail('');
     setPassword('');
-  }
-
-  async function handleLogout() {
-    setError('');
-    try {
-      await logout();
-      navigate('/login');
-    } catch {
-      setError('Failed to log out');
-    }
   }
 
   return (

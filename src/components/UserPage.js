@@ -14,16 +14,16 @@ export default function UserPage() {
        <div className="userinfo">
          <ul  style={{fontFamily: 'Droid Sans'}}>
            <li>
-          <p><b>id:</b> {userData.id}</p>
+          <b>id:</b> {userData.id}
           </li>
           <li>
-          <p><b>email:</b> {userData.email}</p>
+          <b>email:</b> {userData.email}
           </li>
           <li>
-          <p><b>name:</b> {userData.name}</p>
+          <b>name:</b> {userData.name}
           </li>
           <li>
-          <p><b>age:</b> {userData.age}</p>
+          <b>age:</b> {userData.age}
           </li>
           </ul>
         </div>
