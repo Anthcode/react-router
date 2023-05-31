@@ -203,3 +203,12 @@ ul{
 li{
   font-family:'Droid Sans';
 }
+article,p{
+  padding: 18px 14px;
+}
+.home{
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
+}
