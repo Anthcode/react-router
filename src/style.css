@@ -175,7 +175,7 @@ button {
 .login-icon-hide {
   display: none;
 }
-.logout{
+.logout {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -191,29 +191,28 @@ button {
   text-shadow: 2px 2px 2px rgba(2, 2, 2, 0.884);
   min-height: 100px;
 }
-.userinfo{
+.userinfo {
   border: 1px solid rgba(2, 2, 2, 0.685);
   border-radius: 12px;
   padding: 12px 10px;
-  width:auto;
-  
+  width: auto;
 }
-ul{
+ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-
 }
-li{
-  font-family:'Droid Sans';
+li {
+  font-family: 'Droid Sans';
 }
-article{
-
+article {
   padding: 18px 14px;
-
 }
-.home{
+.home {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 10px 8px;
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
