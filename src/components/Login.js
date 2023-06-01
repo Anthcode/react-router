@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
+import { IoLogIn } from  "react-icons/io5";
 
 export default function Login() {
   const { login, currentUser, logout, signup, userData } = useAuth();
@@ -44,6 +45,7 @@ export default function Login() {
     <div className="login">
         <form>
           <h2>Login</h2>
+          <IoLogIn size={25}/>
           {error && <p>{error}</p>}
           <div className="input-div">
             <input
