@@ -44,8 +44,10 @@ export default function Login() {
   return (
     <div className="login">
         <form>
+        <div className="home-header">
           <h2>Login</h2>
           <IoLogIn size={25}/>
+          </div>
           {error && <p>{error}</p>}
           <div className="input-div">
             <input
