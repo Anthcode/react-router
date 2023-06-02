@@ -5,12 +5,30 @@ import { IoLogIn } from  "react-icons/io5";
 import { FcGoogle } from  "react-icons/fc"
 
 export default function Login() {
-  const { login, currentUser, logout, signup, userData } = useAuth();
+  const { login, currentUser, logout, signup, signGoogle } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoging, setIsLoging] = useState(false);
   const [error, setError] = useState('');
+
+
+  async function handleGoogle(e) {
+    e.preventDefault();
+    try {
+      setError('');
+      setIsLoging(true);
+      await signGoogle();
+      navigate('/user');
+    } catch (error) {
+      setError(error.code);
+    }
+    setIsLoging(false);
+    setEmail('');
+    setPassword('');
+  }
+
+
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -66,6 +84,11 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          <button className="btn-google" onClick={handleGoogle}>
+            <div className="login-header">
+              <FcGoogle size={15} />&nbsp;Sign in with Google
+            </div>
+          </button>
           <button
             className="btn-login"
             onClick={handleSubmit}
@@ -76,11 +99,7 @@ export default function Login() {
           <button className="btn-register" onClick={handleRegister}>
             Register
           </button>
-          <button className="btn-google" >
-            <div className="login-header">
-              <FcGoogle size={15} />&nbsp;Sign in with Google
-            </div>
-          </button>
+          
         </form>
 
     </div>
