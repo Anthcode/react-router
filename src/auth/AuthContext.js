@@ -39,11 +39,12 @@ export function AuthProvider({ children }) {
   function createUserDataFolder(userId,userEmail) {
     const userFolderRef = ref(db, '/users/' + userId)
     // Tworzenie folderu dla użytkownika
+    const userName = userEmail.split('@')[0];
    set(userFolderRef,{
       // Dodaj dowolne początkowe dane dla folderu użytkownika
       // Na przykład:
       id : userId,
-      name: 'John Doe',
+      name: userName,
       age: 30,
       email: userEmail
     })
