@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Teko:300,400,500,600,700');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
 * {
   box-sizing: border-box;
@@ -181,21 +182,20 @@ button {
 }
 .btn-google:hover{
   color: rgb(255, 255, 255);
-  background-color: #62be0c;
+  background-color:#4285F4;
 }
 .btn-google{
   border: none;
-  background-color: #5281f7;
+  background-color:   #ffffff;
   border-radius: 4px;
-  color: rgba(255, 254, 254, 0.911);
+  color: rgba(0, 0, 0, 0.911);
   padding: 4px 6px;
   margin: 5px 6px;
-  letter-spacing: 1px;
-  box-shadow: 2px 2px 4px rgba(23, 70, 109, 0.3);
+  box-shadow: 1px 1px 1px grey;
   cursor: pointer;
-  font-size: 0.9em;
-  font-weight: lighter;
-  font-family: monospace;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+
 }
 
 .logout {

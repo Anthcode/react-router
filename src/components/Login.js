@@ -78,11 +78,11 @@ export default function Login() {
           </button>
           <button className="btn-google" >
             <div className="login-header">
-              <FcGoogle size={15} />&nbsp;Google Authorization
+              <FcGoogle size={15} />&nbsp;Sign in with Google
             </div>
           </button>
         </form>
-      
+
     </div>
   );
 }
