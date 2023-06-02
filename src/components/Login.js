@@ -24,8 +24,6 @@ export default function Login() {
       setError(error.code);
     }
     setIsLoging(false);
-    setEmail('');
-    setPassword('');
   }
 
 
