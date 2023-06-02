@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 import { IoLogIn } from  "react-icons/io5";
+import { FcGoogle } from  "react-icons/fc"
 
 export default function Login() {
   const { login, currentUser, logout, signup, userData } = useAuth();
@@ -44,7 +45,7 @@ export default function Login() {
   return (
     <div className="login">
         <form>
-        <div className="home-header">
+        <div className="login-header">
           <h2>Login</h2>
           <IoLogIn size={25}/>
           </div>
@@ -74,6 +75,11 @@ export default function Login() {
           </button>
           <button className="btn-register" onClick={handleRegister}>
             Register
+          </button>
+          <button className="btn-google" >
+            <div className="login-header">
+              <FcGoogle size={15} />&nbsp;Google Authorization
+            </div>
           </button>
         </form>
       
