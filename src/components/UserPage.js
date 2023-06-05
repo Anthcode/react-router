@@ -6,7 +6,9 @@ export default function UserPage() {
   return (
     <div className="userPage">
       <div className="userAvatar">
+      {currentUser.photoURL?
         <img src={currentUser.photoURL} alt="useravatar" className="imgAvatar"/>
+        : <div className="noneAvatar"></div>}
       </div>
       <h1>UserPAGE</h1> 
       <div className="logout">
