@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 import { IoLogIn } from  "react-icons/io5";
 import { FcGoogle } from  "react-icons/fc"
+import { motion } from "framer-motion";
 
 export default function Login() {
   const { login, signup, signGoogle } = useAuth();
@@ -57,12 +58,21 @@ export default function Login() {
  
   return (
     <div className="login">
-        <form className="form-login">
+        
+
+        <motion.form
+    className="form-login"
+    initial={{ opacity: 0, scale: 0.5 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.3 }}
+    >
         <div className="login-header">
           <h2>Login</h2>
           <IoLogIn size={25}/>
           </div>
           {error && <p>{error}</p>}
+          
+
           <div className="input-div">
             <input
               type="email"
@@ -94,7 +104,7 @@ export default function Login() {
           <button className="btn-register" onClick={handleRegister}>
             Register
           </button>
-        </form>
+        </motion.form>
 
     </div>
   );
