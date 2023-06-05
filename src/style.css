@@ -270,7 +270,7 @@ article {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
+ 
 }
 
 .userAvatar {
@@ -310,4 +310,10 @@ article {
 .google-maps {
   display: flex;
   justify-content: center;
+}
+
+.box{
+  width: 100px;
+  height: 100px;
+  background: #030303;
 }
