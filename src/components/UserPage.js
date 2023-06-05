@@ -1,29 +1,28 @@
 import React from 'react';
 import { useAuth } from '../auth/AuthContext';
-import { FaUserCircle} from  "react-icons/fa";
 
 export default function UserPage() {
   const { currentUser, userData } = useAuth();
   return (
     <div className="userPage">
       <div className="userAvatar">
-      <FaUserCircle size={30}/>
+        <img src={currentUser.photoURL} alt="useravatar" className="imgAvatar"/>
       </div>
       <h1>UserPAGE</h1> 
       <div className="logout">
         <p>
-          Użytkownik jest zalogowany jako <b>{currentUser.email}</b>
+          Użytkownik jest zalogowany jako <b>{userData.name?userData.name:currentUser.displayName}</b>
         </p>
        <div className="userinfo">
          <ul  style={{fontFamily: 'Droid Sans'}}>
            <li>
-          <b>id:</b> {userData.id}
+          <b>id:</b> {currentUser.uid?currentUser.uid:userData.id}
           </li>
           <li>
-          <b>email:</b> {userData.email}
+          <b>email:</b> {currentUser.email?currentUser.email:userData.email?userData.email:'none'}
           </li>
           <li>
-          <b>name:</b> {userData.name}
+          <b>name:</b> {userData.name?userData.name:currentUser.displayName}
           </li>
           <li>
           <b>age:</b> {userData.age}

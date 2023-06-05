@@ -5,13 +5,12 @@ import { IoLogIn } from  "react-icons/io5";
 import { FcGoogle } from  "react-icons/fc"
 
 export default function Login() {
-  const { login, currentUser, logout, signup, signGoogle } = useAuth();
+  const { login, signup, signGoogle } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoging, setIsLoging] = useState(false);
   const [error, setError] = useState('');
-
 
   async function handleGoogle(e) {
     e.preventDefault();
@@ -25,8 +24,6 @@ export default function Login() {
     }
     setIsLoging(false);
   }
-
-
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -57,10 +54,10 @@ export default function Login() {
     setEmail('');
     setPassword('');
   }
-
+ 
   return (
     <div className="login">
-        <form>
+        <form className="form-login">
         <div className="login-header">
           <h2>Login</h2>
           <IoLogIn size={25}/>
@@ -97,7 +94,6 @@ export default function Login() {
           <button className="btn-register" onClick={handleRegister}>
             Register
           </button>
-          
         </form>
 
     </div>

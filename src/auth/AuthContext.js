@@ -27,8 +27,8 @@ export function AuthProvider({ children }) {
 
   function signGoogle(){
     const provider = new GoogleAuthProvider();
+    console.log(provider)
     return signInWithPopup(auth, provider)
-  /* */
   }
 
 
@@ -38,31 +38,30 @@ export function AuthProvider({ children }) {
       const userId = userCredential.user.uid;
       const userEmail = userCredential.user.email;
       createUserDataFolder(userId, userEmail); 
-      getUserDataFolder(userId);// Tworzenie folderu dla użytkownika w bazie danych
+      getUserDataFolder(userId);// function create data from user in realtimedatabase
       return userId;
     })
     .catch((error) => {
-      console.error('Błąd podczas tworzenia nowego użytkownika:', error);
+      console.error('Error new user created: ', error);
     });
   }
 
   function createUserDataFolder(userId,userEmail) {
     const userFolderRef = ref(db, '/users/' + userId)
-    // Tworzenie folderu dla użytkownika
+    // create user folder
     const userName = userEmail.split('@')[0];
    set(userFolderRef,{
-      // Dodaj dowolne początkowe dane dla folderu użytkownika
-      // Na przykład:
+      // starter default data new user
       id : userId,
       name: userName,
       age: 30,
       email: userEmail
     })
     .then(() => {
-      console.log('Utworzono folder dla użytkownika:', userId);
+      console.log('Created folder for user: ', userId);
     })
     .catch((error) => {
-      console.error('Błąd podczas tworzenia folderu użytkownika:', error);
+      console.error('Error created user folder :', error);
     });
   }
 
@@ -72,11 +71,11 @@ export function AuthProvider({ children }) {
     return signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const userId = userCredential.user.uid;
-      getUserDataFolder(userId); // Pobranie danych z folderu użytkownika
+      getUserDataFolder(userId); // get data from user folder
       return userId;
     })
     .catch((error) => {
-      console.error('Błąd podczas tworzenia nowego użytkownika:', error);
+      console.error('Error user login :', error);
     });
   }
 
@@ -113,11 +112,13 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
+
+      console.log(currentUser)
       setLoading(false);
     });
 
     return unsubscribe;
-  }, []);
+  }, [currentUser]);
 
   const value = {
     currentUser,
@@ -128,7 +129,8 @@ export function AuthProvider({ children }) {
     resetPassword,
     updateEmail,
     updatePassword,
-    signGoogle
+    signGoogle,
+    loading
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
