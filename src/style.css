@@ -70,7 +70,7 @@ a:hover::before {
 main {
   height: 100vh;
   min-height: 300px;
-
+  overflow: hidden;
   border: 1px solid rgb(0, 0, 0);
   margin: 10px 8px;
   border-radius: 23px;
@@ -300,6 +300,7 @@ article {
   align-items: center;
   justify-content: center;
 }
+
 .about-section {
   display: flex;
   flex-direction: row;

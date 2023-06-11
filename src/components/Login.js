@@ -64,7 +64,7 @@ export default function Login() {
     className="form-login"
     initial={{ opacity: 0, scale: 0.5 }}
     animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.3 }}
+    transition={{ duration: 0.2 }}
     >
         <div className="login-header">
           <h2>Login</h2>
